@@ -195,9 +195,7 @@ public class ParkourChallenge {
             notifier.sendTitle("No contest.", "", 100);
         }
 
-        competingPlayers.forEach(player -> {
-            player.setGameMode(GameMode.SPECTATOR);
-        });
+        competingPlayers.forEach(player -> player.setGameMode(GameMode.SPECTATOR));
 
         if (ongoingTimer != null) ongoingTimer.cleanUp();
         ongoingTimer = new Timer.TimerBuilder(plugin, competingPlayers, 10, "Challenge Ended!")

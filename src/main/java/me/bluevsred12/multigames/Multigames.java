@@ -1,7 +1,6 @@
 package me.bluevsred12.multigames;
 
 import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLib;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.ListenerPriority;
@@ -47,10 +46,13 @@ public class Multigames extends JavaPlugin {
     }
 
     private void addCommands() {
-        getCommand("color").setExecutor(new ColorCommand(this));
-        getCommand("parkour").setExecutor(new ParkourCommand(this));
-        getCommand("uniqueitem").setExecutor(new UniqueItemCommand());
-        getCommand("mystery").setExecutor(new MysteryCommand(this));
+        try {
+            getCommand("color").setExecutor(new ColorCommand(this));
+            getCommand("parkour").setExecutor(new ParkourCommand(this));
+            getCommand("uniqueitem").setExecutor(new UniqueItemCommand());
+            getCommand("mystery").setExecutor(new MysteryCommand(this));
+        }
+        catch(Exception E) { System.out.println(E); }
     }
 
     public World getMainWorld() {
