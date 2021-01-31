@@ -1,5 +1,5 @@
 name: Multigames
-main: me.bluevsred12.multigames.Multigames
+main: xyz.rainbowpunk.multigames.Multigames
 version: 0.0.1
 api-version: 1.13
 depend: [ProtocolLib]
@@ -13,3 +13,5 @@ commands:
   mystery:
     description: I know exactly what this command does, but I'm not gonna tell you what it is!
     usage: Your loss.
+  dissolve:
+    description: Dissolves your inventory! Entirely irreversable!

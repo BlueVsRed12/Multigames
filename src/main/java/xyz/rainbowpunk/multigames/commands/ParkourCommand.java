@@ -1,7 +1,7 @@
-package me.bluevsred12.multigames.commands;
+package xyz.rainbowpunk.multigames.commands;
 
-import me.bluevsred12.multigames.Multigames;
-import me.bluevsred12.multigames.challenges.ParkourChallenge;
+import xyz.rainbowpunk.multigames.Multigames;
+import xyz.rainbowpunk.multigames.challenges.ParkourChallenge;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

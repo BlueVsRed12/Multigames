@@ -1,6 +1,6 @@
-package me.bluevsred12.multigames.challenges;
+package xyz.rainbowpunk.multigames.challenges;
 
-import me.bluevsred12.multigames.utilities.PlayerNotifier;
+import xyz.rainbowpunk.multigames.utilities.PlayerNotifier;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

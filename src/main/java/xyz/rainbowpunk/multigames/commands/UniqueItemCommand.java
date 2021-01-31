@@ -1,6 +1,6 @@
-package me.bluevsred12.multigames.commands;
+package xyz.rainbowpunk.multigames.commands;
 
-import me.bluevsred12.multigames.UniqueItem;
+import xyz.rainbowpunk.multigames.UniqueItem;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

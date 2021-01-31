@@ -1,16 +1,12 @@
-package me.bluevsred12.multigames;
+package xyz.rainbowpunk.multigames;
 
 import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLib;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.ListenerPriority;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
-import me.bluevsred12.multigames.commands.ColorCommand;
-import me.bluevsred12.multigames.commands.MysteryCommand;
-import me.bluevsred12.multigames.commands.ParkourCommand;
-import me.bluevsred12.multigames.commands.UniqueItemCommand;
+import xyz.rainbowpunk.multigames.commands.*;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -21,17 +17,20 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Multigames extends JavaPlugin {
+    private static Multigames instance;
+
     private ProtocolManager protocolManager;
-
     private PacketAdapter playerJoins;
-
     private World mainWorld;
 
     @Override
     public void onEnable() {
+        instance = this;
+
         protocolManager = ProtocolLibrary.getProtocolManager();
-        mainWorld = Bukkit.getWorlds().get(0);
         addPacketListeners();
+        mainWorld = Bukkit.getWorlds().get(0);
+
         addCommands();
     }
 
@@ -51,6 +50,7 @@ public class Multigames extends JavaPlugin {
         getCommand("parkour").setExecutor(new ParkourCommand(this));
         getCommand("uniqueitem").setExecutor(new UniqueItemCommand());
         getCommand("mystery").setExecutor(new MysteryCommand(this));
+        getCommand("dissolve").setExecutor(new DissolveCommand());
     }
 
     public World getMainWorld() {
@@ -71,6 +71,10 @@ public class Multigames extends JavaPlugin {
 
     public ProtocolManager getProtocolManager() {
         return protocolManager;
+    }
+
+    public static Multigames getInstance() {
+        return instance;
     }
 
 }

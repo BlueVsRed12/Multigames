@@ -1,4 +1,4 @@
-package me.bluevsred12.multigames.utilities;
+package xyz.rainbowpunk.multigames.utilities;
 
 import org.bukkit.entity.Player;
 

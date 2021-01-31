@@ -1,6 +1,5 @@
-package me.bluevsred12.multigames;
+package xyz.rainbowpunk.multigames;
 
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 

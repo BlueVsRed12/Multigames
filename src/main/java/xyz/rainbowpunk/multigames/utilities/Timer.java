@@ -1,6 +1,6 @@
-package me.bluevsred12.multigames.utilities;
+package xyz.rainbowpunk.multigames.utilities;
 
-import me.bluevsred12.multigames.Multigames;
+import xyz.rainbowpunk.multigames.Multigames;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.boss.BarColor;
@@ -8,7 +8,6 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.Set;

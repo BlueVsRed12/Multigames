@@ -1,10 +1,10 @@
-package me.bluevsred12.multigames.challenges;
+package xyz.rainbowpunk.multigames.challenges;
 
-import me.bluevsred12.multigames.Multigames;
-import me.bluevsred12.multigames.UniqueItem;
-import me.bluevsred12.multigames.utilities.PlayerNotifier;
-import me.bluevsred12.multigames.utilities.Timer;
-import me.bluevsred12.multigames.utilities.Utilities;
+import xyz.rainbowpunk.multigames.Multigames;
+import xyz.rainbowpunk.multigames.UniqueItem;
+import xyz.rainbowpunk.multigames.utilities.PlayerNotifier;
+import xyz.rainbowpunk.multigames.utilities.Timer;
+import xyz.rainbowpunk.multigames.utilities.Utilities;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;

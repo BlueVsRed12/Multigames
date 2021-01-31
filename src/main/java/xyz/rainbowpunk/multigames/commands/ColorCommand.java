@@ -1,6 +1,6 @@
-package me.bluevsred12.multigames.commands;
+package xyz.rainbowpunk.multigames.commands;
 
-import me.bluevsred12.multigames.Multigames;
+import xyz.rainbowpunk.multigames.Multigames;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
