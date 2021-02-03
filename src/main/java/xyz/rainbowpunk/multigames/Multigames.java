@@ -1,16 +1,11 @@
 package xyz.rainbowpunk.multigames;
 
-import com.comphenix.protocol.PacketType;
-import com.comphenix.protocol.ProtocolLibrary;
-import com.comphenix.protocol.ProtocolManager;
-import com.comphenix.protocol.events.ListenerPriority;
-import com.comphenix.protocol.events.PacketAdapter;
-import com.comphenix.protocol.events.PacketEvent;
-import xyz.rainbowpunk.multigames.commands.*;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import xyz.rainbowpunk.multigames.commands.*;
+import xyz.rainbowpunk.multigames.competition.Competition;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,30 +14,14 @@ import java.util.UUID;
 public class Multigames extends JavaPlugin {
     private static Multigames instance;
 
-    private ProtocolManager protocolManager;
-    private PacketAdapter playerJoins;
     private World mainWorld;
+    private Competition competition;
 
     @Override
     public void onEnable() {
         instance = this;
-
-        protocolManager = ProtocolLibrary.getProtocolManager();
-        addPacketListeners();
         mainWorld = Bukkit.getWorlds().get(0);
-
         addCommands();
-    }
-
-    private void addPacketListeners() {
-        playerJoins = new PacketAdapter(this, ListenerPriority.NORMAL,
-                PacketType.Login.Client.START) {
-            @Override
-            public void onPacketReceiving(PacketEvent event) {
-                Bukkit.broadcastMessage(event.getPlayer().getName() + " has attempted to log in!");
-            }
-        };
-        protocolManager.addPacketListener(playerJoins);
     }
 
     private void addCommands() {
@@ -67,10 +46,6 @@ public class Multigames extends JavaPlugin {
 
     public Set<Player> getOnlinePlayers() {
         return new HashSet<>(Bukkit.getOnlinePlayers());
-    }
-
-    public ProtocolManager getProtocolManager() {
-        return protocolManager;
     }
 
     public static Multigames getInstance() {

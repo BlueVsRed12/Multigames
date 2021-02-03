@@ -1,6 +1,6 @@
 package xyz.rainbowpunk.multigames.commands;
 
-import xyz.rainbowpunk.multigames.UniqueItem;
+import xyz.rainbowpunk.multigames.utilities.UniqueItem;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

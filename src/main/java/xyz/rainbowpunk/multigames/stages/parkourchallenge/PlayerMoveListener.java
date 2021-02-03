@@ -1,4 +1,4 @@
-package xyz.rainbowpunk.multigames.challenges.parkourchallenge;
+package xyz.rainbowpunk.multigames.stages.parkourchallenge;
 
 
 import org.bukkit.Bukkit;

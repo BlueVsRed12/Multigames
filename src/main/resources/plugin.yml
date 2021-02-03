@@ -2,7 +2,6 @@ name: Multigames
 main: xyz.rainbowpunk.multigames.Multigames
 version: 0.0.1
 api-version: 1.13
-depend: [ProtocolLib]
 commands:
   color:
     description: Test out some colored text! You're going to have to provide the formatting, though.

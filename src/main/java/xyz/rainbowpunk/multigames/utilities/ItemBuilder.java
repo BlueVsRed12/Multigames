@@ -1,4 +1,4 @@
-package xyz.rainbowpunk.multigames;
+package xyz.rainbowpunk.multigames.utilities;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

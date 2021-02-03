@@ -1,10 +1,10 @@
-package xyz.rainbowpunk.multigames.challenges.parkourchallenge;
+package xyz.rainbowpunk.multigames.stages.parkourchallenge;
 
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
-import xyz.rainbowpunk.multigames.UniqueItem;
+import xyz.rainbowpunk.multigames.utilities.UniqueItem;
 
 enum Trophy {
     OAK("Oak"),

@@ -1,7 +1,6 @@
-package xyz.rainbowpunk.multigames.challenges.parkourchallenge;
+package xyz.rainbowpunk.multigames.stages.parkourchallenge;
 
 import xyz.rainbowpunk.multigames.Multigames;
-import xyz.rainbowpunk.multigames.UniqueItem;
 import xyz.rainbowpunk.multigames.utilities.PlayerNotifier;
 import xyz.rainbowpunk.multigames.utilities.Timer;
 import xyz.rainbowpunk.multigames.utilities.Utilities;
@@ -11,24 +10,12 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
-import org.bukkit.util.Vector;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class ParkourChallenge {
