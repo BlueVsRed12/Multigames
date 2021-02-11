@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Player;
 import xyz.rainbowpunk.multigames.utilities.MultiColor;
 
 import java.util.HashSet;
@@ -18,7 +19,7 @@ class ColorPlatform {
 
     public static final int INDICATOR_HEIGHT = 0;
     public static final int SHARD_HEIGHT = 76; //todo: this value is nearly definitely wrong
-    public static final int MAX_RECURSE = 500;
+    public static final int MAX_RECURSE = 750;
 
     private MultiColor color;
     private Material verificationMaterial;
@@ -34,7 +35,7 @@ class ColorPlatform {
     private void initializeColor(Block seed) {
         color = MultiColor.fromBlock(seed);
         verificationMaterial = color.getStainedGlass();
-        fillMaterial = color.getWool();
+        fillMaterial = color.getConcrete();
     }
 
     private void initializeEdgeBlocks(Block seed) {
@@ -46,11 +47,17 @@ class ColorPlatform {
         if (visited.contains(block) || visited.size() > MAX_RECURSE) return;
         visited.add(block);
         if (block.getType() != verificationMaterial) return;
-        edgeBlocks.add(getShardRelativeBlock(block));
+        if (adjacentToAir(block)) edgeBlocks.add(getShardRelativeBlock(block));
         for (BlockFace face : ADJACENT_FACES) recurse(visited, block.getRelative(face));
     }
 
-    private Block getShardRelativeBlock(Block block) {
+    private boolean adjacentToAir(Block block) {
+        for (BlockFace face : ADJACENT_FACES)
+            if (block.getRelative(face).getType() == Material.AIR) return true;
+        return false;
+    }
+
+    static Block getShardRelativeBlock(Block block) {
         Location location = block.getLocation();
         location.setY(SHARD_HEIGHT);
         return location.getBlock();
@@ -62,5 +69,9 @@ class ColorPlatform {
 
     public void turnOff() {
         for (Block block : edgeBlocks) block.setType(verificationMaterial);
+    }
+
+    public MultiColor getColor() {
+        return color;
     }
 }

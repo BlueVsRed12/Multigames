@@ -27,6 +27,10 @@ public enum MultiColor {
         materialString = name().toUpperCase();
     }
 
+    public Material getConcrete() {
+        return getMaterial("CONCRETE");
+    }
+
     public Material getStainedGlass() {
          return getMaterial("STAINED_GLASS");
     }
@@ -40,14 +44,15 @@ public enum MultiColor {
     }
 
     public static MultiColor fromLocation(Location location) {
-        return fromBlock(location.getBlock());
+        return location != null ? fromBlock(location.getBlock()) : null;
     }
 
     public static MultiColor fromBlock(Block block) {
-        return fromMaterial(block.getType());
+        return block != null ? fromMaterial(block.getType()) : null;
     }
 
     public static MultiColor fromMaterial(Material material) {
+        if (material == null) return null;
         for (MultiColor color : MultiColor.values()) {
             if (material.toString().startsWith(color.toString())) return color;
         }

@@ -68,9 +68,7 @@ public class ParkourChallenge {
         listeners.add(new BlockPlaceListener(this, plugin));
         listeners.add(new PressurePlateListener(this, plugin));
 
-        for (Listener listener : listeners) {
-            plugin.getServer().getPluginManager().registerEvents(listener, plugin);
-        }
+        for (Listener listener : listeners) plugin.registerListener(listener);
     }
 
     // game states
@@ -406,9 +404,7 @@ public class ParkourChallenge {
     }
 
     public void cleanUp() {
-        for (Listener listener : listeners) {
-            HandlerList.unregisterAll(listener);
-        }
+        for (Listener listener : listeners) plugin.unregisterListener(listener);
 
         if (ongoingTimer != null) ongoingTimer.cleanUp();
         ongoingStates.clear();

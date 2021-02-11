@@ -3,6 +3,7 @@ package xyz.rainbowpunk.multigames;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.rainbowpunk.multigames.commands.*;
@@ -56,5 +57,9 @@ public class Multigames extends JavaPlugin {
 
     public void registerListener(Listener listener) {
         getServer().getPluginManager().registerEvents(listener, this);
+    }
+
+    public void unregisterListener(Listener listener) {
+        HandlerList.unregisterAll(listener);
     }
 }
