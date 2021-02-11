@@ -10,7 +10,7 @@ commands:
   uniqueitem:
     description: Get a unique item from this plugin!
   mystery:
-    description: I know exactly what this command does, but I'm not gonna tell you what it is!
+    description: I know exactly what this command does, but I'm not gonna tell you!
     usage: Your loss.
   dissolve:
     description: Dissolves your inventory! Entirely irreversable!
