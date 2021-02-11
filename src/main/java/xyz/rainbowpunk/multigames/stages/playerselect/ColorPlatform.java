@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import xyz.rainbowpunk.multigames.utilities.MultiColor;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -19,32 +20,47 @@ class ColorPlatform {
     public static final int SHARD_HEIGHT = 76; //todo: this value is nearly definitely wrong
     public static final int MAX_RECURSE = 500;
 
-    private final Material verificationMaterial;
+    private MultiColor color;
+    private Material verificationMaterial;
+    private Material fillMaterial;
     private Set<Block> edgeBlocks;
 
     public ColorPlatform(World world, int seedX, int seedY) {
-        verificationMaterial = Material.ACACIA_BUTTON;
-        initializeEdgeBlocks(new Location(world, seedX, INDICATOR_HEIGHT, seedY));
+        Block seed = new Location(world, seedX, INDICATOR_HEIGHT, seedY).getBlock();
+        initializeColor(seed);
+        initializeEdgeBlocks(seed);
     }
 
-    private void initializeEdgeBlocks(Location seed) {
+    private void initializeColor(Block seed) {
+        color = MultiColor.fromBlock(seed);
+        verificationMaterial = color.getStainedGlass();
+        fillMaterial = color.getWool();
+    }
+
+    private void initializeEdgeBlocks(Block seed) {
         edgeBlocks = new HashSet<>();
-        recurse(new HashSet<>(), seed.getBlock());
+        recurse(new HashSet<>(), seed);
     }
 
     private void recurse(HashSet<Block> visited, Block block) {
         if (visited.contains(block) || visited.size() > MAX_RECURSE) return;
         visited.add(block);
         if (block.getType() != verificationMaterial) return;
-        edgeBlocks.add(block);
+        edgeBlocks.add(getShardRelativeBlock(block));
         for (BlockFace face : ADJACENT_FACES) recurse(visited, block.getRelative(face));
     }
 
+    private Block getShardRelativeBlock(Block block) {
+        Location location = block.getLocation();
+        location.setY(SHARD_HEIGHT);
+        return location.getBlock();
+    }
+
     public void turnOn() {
-        for (Block block : edgeBlocks) block.setType(Material.SEA_LANTERN);
+        for (Block block : edgeBlocks) block.setType(fillMaterial);
     }
 
     public void turnOff() {
-        for (Block block : edgeBlocks) block.setType(Material.GLASS);
+        for (Block block : edgeBlocks) block.setType(verificationMaterial);
     }
 }

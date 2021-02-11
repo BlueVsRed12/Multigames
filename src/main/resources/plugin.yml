@@ -14,3 +14,5 @@ commands:
     usage: Your loss.
   dissolve:
     description: Dissolves your inventory! Entirely irreversable!
+  stage:
+    description: Allows you to start certain stages of the competition.
