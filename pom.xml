@@ -6,8 +6,17 @@
 
     <groupId>xyz.rainbowpunk</groupId>
     <artifactId>Multigames</artifactId>
+    <packaging>pom</packaging>
     <version>0.0.3</version>
     <build>
+        <resources>
+            <resource>
+                <targetPath>.</targetPath>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -35,6 +44,5 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
 
 </project>
