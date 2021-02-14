@@ -18,7 +18,7 @@ class ColorPlatform {
     private static final BlockFace[] ADJACENT_FACES = {NORTH, SOUTH, EAST, WEST};
 
     public static final int INDICATOR_HEIGHT = 0;
-    public static final int SHARD_HEIGHT = 76; //todo: this value is nearly definitely wrong
+    public static final int SHARD_HEIGHT = 76;
     public static final int MAX_RECURSE = 750;
 
     private MultiColor color;
