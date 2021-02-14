@@ -1,5 +1,6 @@
 package xyz.rainbowpunk.multigames.competition;
 
+import org.bukkit.entity.Player;
 import xyz.rainbowpunk.multigames.Multigames;
 import xyz.rainbowpunk.multigames.utilities.MultiColor;
 
@@ -9,27 +10,40 @@ import java.util.stream.Collectors;
 public class Competition {
     private final Multigames plugin;
 
-    private Set<UUID> competitors;
+    /**
+     * All competitors that are competing, stored as UUIDs.
+     */
+    private Set<UUID> competitorUUIDs;
+    /**
+     * Competitors are only put into the color map if they are assigned a color; i.e., after the player select stage.
+     */
     private Map<UUID, MultiColor> colorMap;
-    private Map<MultiColor, UUID> competitorMap;
 
-    public Competition(Multigames plugin, Set<UUID> competitors) {
+    public Competition(Multigames plugin) {
         this.plugin = plugin;
-        initializeCompetitorTracking(competitors);
+        initializeCompetitors();
     }
-
     // initialization
-    private void initializeCompetitorTracking(Set<UUID> competitors) {
-        this.competitors = competitors;
-
+    private void initializeCompetitors() {
+        competitorUUIDs = new HashSet<>();
         colorMap = new HashMap<>();
-        competitorMap = new HashMap<>();
-        for (UUID competitor : competitors) setCompetitorColor(competitor, null);
     }
 
     // accessors & mutators
+    public void addCompetitor(Player player) {
+        addCompetitor(player.getUniqueId());
+    }
+
+    public void addCompetitor(UUID competitor) {
+        competitorUUIDs.add(competitor);
+    }
+
     public UUID getCompetitor(MultiColor color) {
-        return competitorMap.get(color);
+        return colorMap.entrySet().stream()
+                .filter(entry -> entry.getValue().equals(color))
+                .findFirst()
+                .map(Map.Entry::getKey)
+                .orElse(null);
     }
 
     public MultiColor getCompetitorColor(UUID competitor) {
@@ -38,28 +52,31 @@ public class Competition {
 
     public void setCompetitorColor(UUID competitor, MultiColor color) {
         if (!isCompeting(competitor)) return;
-        colorMap.put(competitor, color);
-        competitorMap.put(color, competitor);
+
+        if (color == null) removeCompetitorColor(competitor);
+        else colorMap.put(competitor, color);
+    }
+
+    public void removeCompetitorColor(UUID competitor) {
+        colorMap.remove(competitor);
     }
 
     public boolean isCompeting(UUID competitor) {
-        return (competitors.contains(competitor));
+        return competitorUUIDs.contains(competitor);
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-
-        Map<MultiColor, String> stringColorMap = competitorMap.entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, e -> plugin.getPlayerName(e.getValue())));
-        TreeMap<MultiColor, String> sortedStringColorMap = new TreeMap<>(Comparator.comparing(MultiColor::toString));
-        sortedStringColorMap.putAll(stringColorMap);
-        for (Map.Entry<MultiColor, String> entry : sortedStringColorMap.entrySet()) {
-            builder
-                    .append(entry.getValue())
+        List<UUID> competitors = new LinkedList<>(competitorUUIDs).stream()
+                .sorted(Comparator.comparing(this::getCompetitorColor))
+                .collect(Collectors.toList());
+        for (UUID uuid : competitors) {
+            MultiColor color = getCompetitorColor(uuid);
+            builder.append(plugin.getPlayerName(uuid))
                     .append(" | ")
-                    .append(entry.getKey())
-                    .append("\n");
+                    .append(color == null ? "UNASSIGNED" : color)
+                    .append('\n');
         }
 
         return builder.toString();

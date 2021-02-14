@@ -16,3 +16,5 @@ commands:
     description: Dissolves your inventory! Entirely irreversable!
   stage:
     description: Allows you to start certain stages of the competition.
+  competition:
+    description: Instantly join the competition!

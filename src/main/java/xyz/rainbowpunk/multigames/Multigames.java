@@ -21,12 +21,13 @@ public class Multigames extends JavaPlugin {
     private Competition competition;
     private PlayerNameCache playerNameCache;
 
+    // initialization
     @Override
     public void onEnable() {
         instance = this;
 
         mainWorld = Bukkit.getWorlds().get(0);
-        competition = new Competition(this, new HashSet<>());
+        competition = new Competition(this);
         playerNameCache = new PlayerNameCache(this, getOnlinePlayers());
 
         addCommands();
@@ -44,6 +45,12 @@ public class Multigames extends JavaPlugin {
         getCommand("mystery").setExecutor(new MysteryCommand(this));
         getCommand("dissolve").setExecutor(new DissolveCommand());
         getCommand("stage").setExecutor(new StageCommand(this));
+        getCommand("competition").setExecutor(new CompetitionCommand(competition));
+    }
+
+    // accessors and mutators
+    public Competition getCompetition() {
+        return competition;
     }
 
     public String getPlayerName(UUID uuid) {
