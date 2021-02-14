@@ -8,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.rainbowpunk.multigames.commands.*;
 import xyz.rainbowpunk.multigames.competition.Competition;
+import xyz.rainbowpunk.multigames.utilities.PlayerNameCache;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,12 +19,22 @@ public class Multigames extends JavaPlugin {
 
     private World mainWorld;
     private Competition competition;
+    private PlayerNameCache playerNameCache;
 
     @Override
     public void onEnable() {
         instance = this;
+
         mainWorld = Bukkit.getWorlds().get(0);
+        competition = new Competition(this, new HashSet<>());
+        playerNameCache = new PlayerNameCache(this, getOnlinePlayers());
+
         addCommands();
+    }
+
+    @Override
+    public void onDisable() {
+        playerNameCache.cleanUp();
     }
 
     private void addCommands() {
@@ -33,6 +44,10 @@ public class Multigames extends JavaPlugin {
         getCommand("mystery").setExecutor(new MysteryCommand(this));
         getCommand("dissolve").setExecutor(new DissolveCommand());
         getCommand("stage").setExecutor(new StageCommand(this));
+    }
+
+    public String getPlayerName(UUID uuid) {
+        return playerNameCache.getPlayerName(uuid);
     }
 
     public World getMainWorld() {
