@@ -50,12 +50,12 @@ public class PlayerSelectListener implements Listener {
 
     private void stepOnto(MultiColor color, UUID uuid) {
         previouslyStoodMap.put(uuid, color);
-        stage.stepOnto(color);
+        stage.stepOnto(color, uuid);
     }
 
     private void stepOff(MultiColor color, UUID uuid) {
         previouslyStoodMap.put(uuid, null);
-        stage.stepOff(color);
+        stage.stepOff(color, uuid);
     }
 
     private Block getPlayerIndicatorBlock(Player player) {

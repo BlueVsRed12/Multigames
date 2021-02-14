@@ -1,19 +1,24 @@
 package xyz.rainbowpunk.multigames.stages.playerselect;
 
 import xyz.rainbowpunk.multigames.Multigames;
+import xyz.rainbowpunk.multigames.competition.Competition;
 import xyz.rainbowpunk.multigames.utilities.MultiColor;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 
 public class PlayerSelectStage {
      private final Multigames plugin;
+     private final Competition competition;
+
      private PlayerSelectListener listener;
      private Map<MultiColor, ColorPlatform> platformMap;
 
      public PlayerSelectStage(Multigames plugin) {
           this.plugin = plugin;
+          this.competition = plugin.getCompetition();
      }
 
      public void start() {
@@ -48,19 +53,22 @@ public class PlayerSelectStage {
           }
      }
 
-     public void stepOnto(MultiColor color) {
+     public void stepOnto(MultiColor color, UUID uuid) {
+          competition.setCompetitorColor(uuid, color);
           platformMap.get(color).turnOn();
      }
 
-     public void stepOff(MultiColor color) {
+     public void stepOff(MultiColor color, UUID uuid) {
+          competition.removeCompetitorColor(uuid);
           platformMap.get(color).turnOff();
      }
 
      public void end() {
-          for (ColorPlatform platform : platformMap.values()) platform.turnOff();
+          cleanUp();
      }
 
      public void cleanUp() {
+          for (ColorPlatform platform : platformMap.values()) platform.turnOff();
           plugin.unregisterListener(listener);
      }
 }
