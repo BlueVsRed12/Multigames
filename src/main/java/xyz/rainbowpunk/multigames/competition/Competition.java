@@ -68,9 +68,15 @@ public class Competition {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        List<UUID> competitors = new LinkedList<>(competitorUUIDs).stream()
+        List<UUID> competitors = competitorUUIDs.stream()
+                .filter(e -> getCompetitorColor(e) != null)
                 .sorted(Comparator.comparing(this::getCompetitorColor))
-                .collect(Collectors.toList());
+                .collect(Collectors.toCollection(LinkedList::new));
+        competitors.addAll(competitorUUIDs.stream()
+                .filter(e -> getCompetitorColor(e) == null)
+                .sorted(Comparator.comparing(plugin::getPlayerName))
+                .collect(Collectors.toList()));
+
         for (UUID uuid : competitors) {
             MultiColor color = getCompetitorColor(uuid);
             builder.append(plugin.getPlayerName(uuid))
