@@ -1,4 +1,4 @@
-package xyz.rainbowpunk.multigames.specialeffects;
+package xyz.rainbowpunk.multigames.utilities.specialeffects;
 
 import org.bukkit.entity.Player;
 
