@@ -45,7 +45,6 @@ public class Multigames extends JavaPlugin {
     private void addCommands() {
         getCommand("color").setExecutor(new ColorCommand(this));
         getCommand("parkour").setExecutor(new ParkourCommand(this));
-        getCommand("uniqueitem").setExecutor(new UniqueItemCommand());
         getCommand("mystery").setExecutor(new MysteryCommand(this));
         getCommand("dissolve").setExecutor(new DissolveCommand());
         getCommand("stage").setExecutor(new StageCommand(this));

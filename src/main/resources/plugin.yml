@@ -7,8 +7,6 @@ commands:
     description: Test out some colored text! You're going to have to provide the formatting, though.
   parkour:
     description: Starts the parkour challenge.
-  uniqueitem:
-    description: Get a unique item from this plugin!
   mystery:
     description: I know exactly what this command does, but I'm not gonna tell you!
     usage: Your loss.
