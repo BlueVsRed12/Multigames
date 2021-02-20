@@ -49,6 +49,7 @@ public class Multigames extends JavaPlugin {
         getCommand("dissolve").setExecutor(new DissolveCommand());
         getCommand("stage").setExecutor(new StageCommand(this));
         getCommand("competition").setExecutor(new CompetitionCommand(competition));
+        getCommand("customitems").setExecutor(new CustomItemCommand(customItems));
     }
 
     // accessors and mutators

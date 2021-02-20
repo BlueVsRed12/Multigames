@@ -6,7 +6,8 @@
     "lore": [
       "&7It looks like a page of a &kbook&7...",
       "&7What's it doing here...?"
-    ]
+    ],
+    "sparkle": true
   },
   {
     "key": "empty",
@@ -20,32 +21,38 @@
     "lore": [
       "&7&oA strange number is carved into this trophy's side.",
       "&0&l&8[137]"
-    ]
+    ],
+    "sparkle": true
   },
   {
     "key": "spruce_trophy",
     "item": "spruce_wood",
-    "title": "&f&o[ &fSpruce Trophy &o]"
+    "title": "&f&o[ &fSpruce Trophy &o]",
+    "sparkle": true
   },
   {
     "key": "birch_trophy",
     "item": "birch_wood",
-    "title": "&f&o[ &fBirch Trophy &o]"
+    "title": "&f&o[ &fBirch Trophy &o]",
+    "sparkle": true
   },
   {
     "key": "jungle_trophy",
     "item": "jungle_wood",
-    "title": "&f&o[ &fJungle Trophy &o]"
+    "title": "&f&o[ &fJungle Trophy &o]",
+    "sparkle": true
   },
   {
     "key": "acacia_trophy",
     "item": "acacia_wood",
-    "title": "&f&o[ &fAcacia Trophy &o]"
+    "title": "&f&o[ &fAcacia Trophy &o]",
+    "sparkle": true
   },
   {
     "key": "dark_oak_trophy",
     "item": "dark_oak_wood",
-    "title": "&f&o[ &fDark Oak Trophy &o]"
+    "title": "&f&o[ &fDark Oak Trophy &o]",
+    "sparkle": true
   }
 
 ]

@@ -5,6 +5,8 @@ api-version: 1.16
 commands:
   color:
     description: Test out some colored text! You're going to have to provide the formatting, though.
+  customitems:
+    description: There are items unique to Multigames. Use this command to view and obtain them.
   parkour:
     description: Starts the parkour challenge.
   mystery:

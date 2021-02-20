@@ -1,24 +1,28 @@
 package xyz.rainbowpunk.multigames.utilities;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.enchantments.Enchantment;
+import org.bukkit.enchantments.EnchantmentTarget;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CustomItems {
+    private final List<String> keys;
     private final Map<String, ItemStack> itemMap;
 
     public CustomItems(String json) {
+        keys = new LinkedList<>();
         itemMap = new HashMap<>();
         loadItems(json);
+    }
+
+    public List<String> getKeys() {
+        return new LinkedList<>(keys);
     }
 
     public ItemStack get(String key) {
@@ -28,10 +32,10 @@ public class CustomItems {
     private void loadItems(String json) {
         JsonElement root = new JsonParser().parse(json);
         JsonArray itemArray = root.getAsJsonArray();
-        for (JsonElement item : itemArray) loadItems(item.getAsJsonObject());
+        for (JsonElement item : itemArray) loadItem(item.getAsJsonObject());
     }
 
-    private void loadItems(JsonObject json) {
+    private void loadItem(JsonObject json) {
         String key = json.getAsJsonPrimitive("key").getAsString();
 
         Material material = Material.matchMaterial(json.getAsJsonPrimitive("item").getAsString());
@@ -49,8 +53,20 @@ public class CustomItems {
             meta.setLore(lore);
         }
 
+        // This is really bad, because:
+        // 1- if this is an armor piece, it'll have protection I by default
+        // 2- if there are other enchantments already existing on this item,
+        //        those will be hidden by the HIDE_ENCHANTS flag
+        // todo: implement this better
+        JsonPrimitive isSparkleJson = json.getAsJsonPrimitive("sparkle");
+        if (isSparkleJson != null && isSparkleJson.getAsBoolean()) {
+            meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 1, true);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+
         item.setItemMeta(meta);
 
+        keys.add(key);
         itemMap.put(key, item);
     }
 }
