@@ -1,6 +1,7 @@
 package xyz.rainbowpunk.multigames.stages.parkourchallenge;
 
 import xyz.rainbowpunk.multigames.Multigames;
+import xyz.rainbowpunk.multigames.utilities.CustomItems;
 import xyz.rainbowpunk.multigames.utilities.PlayerNotifier;
 import xyz.rainbowpunk.multigames.utilities.Timer;
 import xyz.rainbowpunk.multigames.utilities.Utilities;
@@ -10,7 +11,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -20,6 +20,7 @@ import java.util.Set;
 
 public class ParkourChallenge {
     private final Multigames plugin;
+    private final CustomItems customItems;
 
     private final BukkitScheduler scheduler;
     private final PlayerNotifier notifier;
@@ -40,6 +41,7 @@ public class ParkourChallenge {
 
     public ParkourChallenge(Multigames plugin) {
         this.plugin = plugin;
+        customItems = plugin.getCustomItems();
 
         competingPlayers = plugin.getOnlinePlayers();
 
@@ -326,7 +328,7 @@ public class ParkourChallenge {
         Block pressurePlate = woodBlock.getRelative(0, 1, 0);
         if (trophy == null) return false;
 
-        player.getInventory().addItem(trophy.getItemStack());
+        player.getInventory().addItem(customItems.get(trophy.getCustomItemKey()));
         Bukkit.broadcastMessage(player.getDisplayName() + " has collected the " + trophy.getDisplayFriendlyName() + " trophy!");
 
         pressurePlate.setType(Material.AIR);

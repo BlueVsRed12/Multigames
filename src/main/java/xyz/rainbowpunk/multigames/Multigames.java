@@ -8,7 +8,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.rainbowpunk.multigames.commands.*;
 import xyz.rainbowpunk.multigames.competition.Competition;
+import xyz.rainbowpunk.multigames.utilities.CustomItems;
 import xyz.rainbowpunk.multigames.utilities.PlayerNameCache;
+import xyz.rainbowpunk.multigames.utilities.Utilities;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +22,7 @@ public class Multigames extends JavaPlugin {
     private World mainWorld;
     private Competition competition;
     private PlayerNameCache playerNameCache;
+    private CustomItems customItems;
 
     // initialization
     @Override
@@ -29,6 +32,7 @@ public class Multigames extends JavaPlugin {
         mainWorld = Bukkit.getWorlds().get(0);
         competition = new Competition(this);
         playerNameCache = new PlayerNameCache(this, getOnlinePlayers());
+        customItems = new CustomItems(Utilities.resourceToString("/customitems.json"));
 
         addCommands();
     }
@@ -51,6 +55,10 @@ public class Multigames extends JavaPlugin {
     // accessors and mutators
     public Competition getCompetition() {
         return competition;
+    }
+
+    public CustomItems getCustomItems() {
+        return customItems;
     }
 
     public String getPlayerName(UUID uuid) {

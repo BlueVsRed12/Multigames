@@ -6,6 +6,11 @@ import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
+
 public class Utilities {
     public static void spawnParticleLine(World world, Particle particle, int count, Location start, Location end) {
         start = start.clone();
@@ -25,5 +30,10 @@ public class Utilities {
 
     public static String colorText(String text) {
         return ChatColor.translateAlternateColorCodes('&', text);
+    }
+
+    public static String resourceToString(String path) {
+        InputStream input = Utilities.class.getResourceAsStream(path);
+        return new BufferedReader(new InputStreamReader(input)).lines().collect(Collectors.joining("\n"));
     }
 }

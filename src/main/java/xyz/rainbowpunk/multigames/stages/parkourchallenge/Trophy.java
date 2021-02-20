@@ -4,7 +4,6 @@ package xyz.rainbowpunk.multigames.stages.parkourchallenge;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.ItemStack;
-import xyz.rainbowpunk.multigames.utilities.UniqueItem;
 
 enum Trophy {
     OAK("Oak"),
@@ -14,14 +13,12 @@ enum Trophy {
     ACACIA("Acacia"),
     DARK_OAK("Dark Oak");
 
-    private final String nameID;
+    private final String name;
     private final String displayFriendlyName;
-    private final ItemStack itemStack;
 
     Trophy(String displayFriendlyName) {
-        nameID = this.name();
+        name = this.name();
         this.displayFriendlyName = displayFriendlyName;
-        itemStack = UniqueItem.getItemStack(nameID + "_TROPHY");
     }
 
     public static Trophy getTrophy(Material searchedMaterial) {
@@ -37,15 +34,15 @@ enum Trophy {
     }
 
     public Material getWood() {
-        return Material.getMaterial(nameID + "_WOOD");
+        return Material.getMaterial(name + "_WOOD");
     }
 
     public Material getStairs() {
-        return Material.getMaterial(nameID + "_STAIRS");
+        return Material.getMaterial(name + "_STAIRS");
     }
 
-    public ItemStack getItemStack() {
-        return itemStack;
+    public String getCustomItemKey() {
+        return name + "_trophy";
     }
 
     public String getDisplayFriendlyName() {

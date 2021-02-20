@@ -1,0 +1,51 @@
+[
+  {
+    "key": "unobtainium",
+    "item": "paper",
+    "title": "&8&kFabric of the Unfathomable",
+    "lore": [
+      "&7It looks like a page of a &kbook&7...",
+      "&7What's it doing here...?"
+    ]
+  },
+  {
+    "key": "empty",
+    "item": "black_stained_glass_pane",
+    "title": "&f"
+  },
+  {
+    "key": "oak_trophy",
+    "item": "oak_wood",
+    "title": "&f&o[ &fOak Trophy &o]",
+    "lore": [
+      "&7&oA strange number is carved into this trophy's side.",
+      "&0&l&8[137]"
+    ]
+  },
+  {
+    "key": "spruce_trophy",
+    "item": "spruce_wood",
+    "title": "&f&o[ &fSpruce Trophy &o]"
+  },
+  {
+    "key": "birch_trophy",
+    "item": "birch_wood",
+    "title": "&f&o[ &fBirch Trophy &o]"
+  },
+  {
+    "key": "jungle_trophy",
+    "item": "jungle_wood",
+    "title": "&f&o[ &fJungle Trophy &o]"
+  },
+  {
+    "key": "acacia_trophy",
+    "item": "acacia_wood",
+    "title": "&f&o[ &fAcacia Trophy &o]"
+  },
+  {
+    "key": "dark_oak_trophy",
+    "item": "dark_oak_wood",
+    "title": "&f&o[ &fDark Oak Trophy &o]"
+  }
+
+]
